@@ -1,20 +1,25 @@
-SHELL_NAME=basic-shell
+.PHONY: all clean
+
+NAME=basic-shell
+SHELL_NAME="Basic Shell"
 SHELL_VERSION=0.0.1
 
-all: $(SHELL_NAME)
+SRC=src
+OBJ=obj
 
-$(SHELL_NAME): shell.o function.o main.o
-	gcc $^ -o $@
+C_FILES=$(wildcard $(SRC)/*.c)
+OBJECTS=$(C_FILES:$(SRC)/%.c=$(OBJ)/%.o)
 
-shell.o: shell.c
-	gcc -c $^ -o $@ -DSHELL_VERSION=\"$(SHELL_VERSION)\"
+CFLAGS=-DSHELL_VERSION=\"$(SHELL_VERSION)\" -DSHELL_NAME=\"$(SHELL_NAME)\" -Iinclude/
 
-function.o: function.c
-	gcc -c $^ -o $@
+all: $(NAME)
 
-main.o: main.c
-	gcc -c $^ -o $@
+$(NAME): $(OBJECTS)
+	gcc $^ -o $@ $(CFLAGS)
+
+$(OBJ)/%.o: $(SRC)/%.c
+	gcc -c $^ -o $@ $(CFLAGS)
 
 clean:
-	rm *.o 
-	rm $(SHELL_NAME)
+	rm $(OBJ)/* 
+	rm $(NAME)
