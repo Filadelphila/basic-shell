@@ -1,2 +1,11 @@
 # Basic-Shell
 A simple/basic linux shell.
+## How to install ?
+Simply run `make` into the project, it will build the `basic-shell` executable shell.
+## Do I need some libs ?
+I can not really answer, it must work on all Linux distribution with the minimal develepment librarie installed.
+If any particular librarie is needed it will likely tell you so, do not worry.
+## Is this shell customizable ?
+Not at all at the moment.
+## Inspiration
+This project is inspired by [this web page](https://brennan.io/2015/01/16/write-a-shell-in-c/).
